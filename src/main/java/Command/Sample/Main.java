@@ -1,31 +1,71 @@
-package Command.Sample;
+package command.sample;
 
-import command.*;
-import drawer.*;
+import command.sample.command.Command;
+import command.sample.command.MacroCommand;
+import command.sample.drawer.ColorCommand;
+import command.sample.drawer.DrawCanvas;
+import command.sample.drawer.DrawCommand;
 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
-public class Main extends JFrame implements ActionListener, MouseMotionListener, WindowListener {
+public class Main extends JFrame implements ActionListener {
     // 绘制的历史记录
-    private MacroCommand history = new MacroCommand();
+    private final MacroCommand history = new MacroCommand();
     // 绘制区域
-    private DrawCanvas canvas = new DrawCanvas(400, 400, history);
+    private final DrawCanvas canvas = new DrawCanvas(400, 400, history);
     // 删除按钮
-    private JButton clearButton  = new JButton("clear");
+    private final JButton clearButton = new JButton("clear");
+    // 撤销按钮
+    private final JButton undoButton = new JButton("undo");
+    // 红色按钮
+    private final JButton redButton = new JButton("red");
+    // 绿色按钮
+    private final JButton greenButton = new JButton("green");
+    // 蓝色按钮
+    private final JButton blueButton = new JButton("blue");
 
     // 构造函数
-    public Main(String title) {
+    public Main(final String title) {
         super(title);
 
-        this.addWindowListener(this);
-        canvas.addMouseMotionListener(this);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(final WindowEvent e) {
+                super.windowClosing(e);
+                System.exit(0);
+            }
+        });
+        canvas.addMouseMotionListener(new MouseMotionAdapter() {
+            @Override
+            public void mouseDragged(final MouseEvent e) {
+                final Command cmd = new DrawCommand(canvas, e.getPoint());
+                history.append(cmd);
+                cmd.execute();
+            }
+        });
         clearButton.addActionListener(this);
+        undoButton.addActionListener(this);
+        redButton.addActionListener(this);
+        greenButton.addActionListener(this);
+        blueButton.addActionListener(this);
 
-        Box buttonBox = new Box(BoxLayout.X_AXIS);
+        final Box buttonBox = new Box(BoxLayout.X_AXIS);
         buttonBox.add(clearButton);
-        Box mainBox = new Box(BoxLayout.Y_AXIS);
+        buttonBox.add(undoButton);
+        buttonBox.add(redButton);
+        buttonBox.add(greenButton);
+        buttonBox.add(blueButton);
+        final Box mainBox = new Box(BoxLayout.Y_AXIS);
         mainBox.add(buttonBox);
         mainBox.add(canvas);
         getContentPane().add(mainBox);
@@ -35,34 +75,31 @@ public class Main extends JFrame implements ActionListener, MouseMotionListener,
     }
 
     // ActionListener接口中的方法
-    public void actionPerformed(ActionEvent e) {
+    @Override
+    public void actionPerformed(final ActionEvent e) {
         if (e.getSource() == clearButton) {
             history.clear();
+            canvas.init();
             canvas.repaint();
+        } else if (e.getSource() == undoButton) {
+            history.undo();
+            canvas.repaint();
+        } else if (e.getSource() == redButton) {
+            final Command cmd = new ColorCommand(canvas, Color.red);
+            history.append(cmd);
+            cmd.execute();
+        } else if (e.getSource() == greenButton) {
+            final Command cmd = new ColorCommand(canvas, Color.green);
+            history.append(cmd);
+            cmd.execute();
+        } else if (e.getSource() == blueButton) {
+            final Command cmd = new ColorCommand(canvas, Color.blue);
+            history.append(cmd);
+            cmd.execute();
         }
     }
 
-    // MouseMotionListener接口中的方法
-    public void mouseMoved(MouseEvent e) {
-    }
-    public void mouseDragged(MouseEvent e) {
-        Command cmd = new DrawCommand(canvas, e.getPoint());
-        history.append(cmd);
-        cmd.execute();
-    }
-
-    // WindowListener接口中的方法
-    public void windowClosing(WindowEvent e) {
-        System.exit(0);
-    }
-    public void windowActivated(WindowEvent e) {}
-    public void windowClosed(WindowEvent e) {}
-    public void windowDeactivated(WindowEvent e) {}
-    public void windowDeiconified(WindowEvent e) {}
-    public void windowIconified(WindowEvent e) {}
-    public void windowOpened(WindowEvent e) {}
-
-    public static void main(String[] args) {
-        new Main("Command Pattern Sample");
+    public static void main(final String[] args) {
+        new Main("Command Pattern sample");
     }
 }

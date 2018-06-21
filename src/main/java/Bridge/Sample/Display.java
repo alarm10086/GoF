@@ -1,22 +1,27 @@
-package Bridge.Sample;
+package bridge.sample;
 
 public class Display {
-    private DisplayImpl impl;
-    public Display(DisplayImpl impl) {
+    private final DisplayImpl impl;
+
+    public Display(final DisplayImpl impl) {
         this.impl = impl;
     }
+
     public void open() {
         impl.rawOpen();
     }
+
     public void print() {
         impl.rawPrint();
     }
+
     public void close() {
         impl.rawClose();
     }
+
     public final void display() {
         open();
-        print();                    
+        print();
         close();
     }
 }

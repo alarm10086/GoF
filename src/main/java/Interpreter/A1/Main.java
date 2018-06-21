@@ -1,20 +1,24 @@
-package Interpreter.A1;
+package interpreter.a1;
 
-import language.InterpreterFacade;
-import turtle.TurtleCanvas;
+import interpreter.a1.language.InterpreterFacade;
+import interpreter.a1.turtle.TurtleCanvas;
 
-import java.util.*;
-import java.io.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Frame;
+import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class Main extends Frame implements ActionListener {
-    private TurtleCanvas canvas = new TurtleCanvas(400, 400);
-    private InterpreterFacade facade = new InterpreterFacade(canvas);
-    private TextField programTextField = new TextField("program repeat 3 go right go left end end");
+    private final TurtleCanvas canvas = new TurtleCanvas(400, 400);
+    private final InterpreterFacade facade = new InterpreterFacade(canvas);
+    private final TextField programTextField = new TextField(
+            "program repeat 3 go right go left end end");
 
     // 构造函数
-    public Main(String title) {
+    public Main(final String title) {
         super(title);
 
         canvas.setExecutor(facade);
@@ -24,7 +28,8 @@ public class Main extends Frame implements ActionListener {
         programTextField.addActionListener(this);
 
         this.addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
+            @Override
+            public void windowClosing(final WindowEvent e) {
                 System.exit(0);
             }
         });
@@ -37,20 +42,21 @@ public class Main extends Frame implements ActionListener {
     }
 
     // 供ActionListener用
-    public void actionPerformed(ActionEvent e) {
+    @Override
+    public void actionPerformed(final ActionEvent e) {
         if (e.getSource() == programTextField) {
             parseAndExecute();
         }
     }
 
     private void parseAndExecute() {
-        String programText = programTextField.getText();
+        final String programText = programTextField.getText();
         System.out.println("programText = " + programText);
         facade.parse(programText);
         canvas.repaint();
     }
 
-    public static void main(String[] args) {
-        new Main("Interpreter Pattern Sample");
+    public static void main(final String[] args) {
+        new Main("Interpreter Pattern sample");
     }
 }

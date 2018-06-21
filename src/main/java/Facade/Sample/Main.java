@@ -1,9 +1,9 @@
-package Facade.Sample;
+package facade.sample;
 
-import Facade.Sample.pagemaker.PageMaker;
+import facade.sample.pagemaker.PageMaker;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         PageMaker.makeWelcomePage("hyuki@hyuki.com", "welcome.html");
     }
 }

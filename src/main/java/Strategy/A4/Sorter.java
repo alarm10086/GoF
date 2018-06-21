@@ -1,6 +1,4 @@
-package Strategy.A4;
-
-import java.lang.Comparable;
+package strategy.a4;
 
 public interface Sorter {
     public abstract void sort(Comparable[] data);

@@ -1,11 +1,13 @@
-package Interpreter.Sample;
+package interpreter.sample;
 
 import java.util.ArrayList;
 
 // <command list> ::= <command>* end
 public class CommandListNode extends Node {
-    private ArrayList list = new ArrayList();
-    public void parse(Context context) throws ParseException {
+    private final ArrayList<CommandNode> list = new ArrayList();
+
+    @Override
+    public void parse(final Context context) throws ParseException {
         while (true) {
             if (context.currentToken() == null) {
                 throw new ParseException("Missing 'end'");
@@ -13,12 +15,14 @@ public class CommandListNode extends Node {
                 context.skipToken("end");
                 break;
             } else {
-                Node commandNode = new CommandNode();
+                final CommandNode commandNode = new CommandNode();
                 commandNode.parse(context);
                 list.add(commandNode);
             }
         }
     }
+
+    @Override
     public String toString() {
         return list.toString();
     }

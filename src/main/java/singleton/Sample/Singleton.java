@@ -1,4 +1,4 @@
-package singleton.Sample;
+package singleton.sample;
 
 public class Singleton {
     private static final Singleton singleton = new Singleton();

@@ -1,4 +1,4 @@
-package singleton.Sample;
+package singleton.sample;
 
 public class Main {
     public static void main(final String[] args) {

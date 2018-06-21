@@ -1,17 +1,18 @@
-package Strategy.A4;
-
-import Strategy.Q4.Sorter;
+package strategy.a4;
 
 public class QuickSorter implements Sorter {
     Comparable[] data;
-    public void sort(Comparable[] data) {
+
+    @Override
+    public void sort(final Comparable[] data) {
         this.data = data;
         qsort(0, data.length - 1);
     }
+
     private void qsort(int pre, int post) {
-        int saved_pre = pre;
-        int saved_post = post;
-        Comparable mid = data[(pre + post) / 2];
+        final int saved_pre = pre;
+        final int saved_post = post;
+        final Comparable mid = data[(pre + post) / 2];
         do {
             while (data[pre].compareTo(mid) < 0) {
                 pre++;
@@ -20,7 +21,7 @@ public class QuickSorter implements Sorter {
                 post--;
             }
             if (pre <= post) {
-                Comparable tmp = data[pre];
+                final Comparable tmp = data[pre];
                 data[pre] = data[post];
                 data[post] = tmp;
                 pre++;

@@ -1,7 +1,7 @@
-package Interpreter.A1.language;
+package interpreter.a1.language;
 
 public class ExecuteException extends Exception {
-    public ExecuteException(String msg) {
+    public ExecuteException(final String msg) {
         super(msg);
     }
 }

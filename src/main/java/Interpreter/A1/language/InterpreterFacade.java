@@ -1,13 +1,15 @@
-package Interpreter.A1.language;
+package interpreter.a1.language;
 
 public class InterpreterFacade implements Executor {
-    private ExecutorFactory factory;
+    private final ExecutorFactory factory;
     private Context context;
     private Node programNode;
-    public InterpreterFacade(ExecutorFactory factory) {
+
+    public InterpreterFacade(final ExecutorFactory factory) {
         this.factory = factory;
     }
-    public boolean parse(String text) {
+
+    public boolean parse(final String text) {
         boolean ok = true;
         this.context = new Context(text);
         this.context.setExecutorFactory(factory);
@@ -15,16 +17,18 @@ public class InterpreterFacade implements Executor {
         try {
             programNode.parse(context);
             System.out.println(programNode.toString());
-        } catch (ParseException e) {
+        } catch (final ParseException e) {
             e.printStackTrace();
             ok = false;
         }
         return ok;
     }
+
+    @Override
     public void execute() throws ExecuteException {
         try {
             programNode.execute();
-        } catch (ExecuteException e) {
+        } catch (final ExecuteException e) {
             e.printStackTrace();
         }
     }

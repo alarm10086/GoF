@@ -1,4 +1,4 @@
-package singleton.A3_1;
+package singleton.a3_1;
 
 public class Singleton {
     private static Singleton singleton = null;

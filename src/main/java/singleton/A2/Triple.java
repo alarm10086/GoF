@@ -1,4 +1,4 @@
-package singleton.A2;
+package singleton.a2;
 
 public class Triple {
     private static final Triple[] triple = new Triple[]{

@@ -1,4 +1,4 @@
-package singleton.A3_2;
+package singleton.a3_2;
 
 public class Main extends Thread {
     public static void main(final String[] args) {

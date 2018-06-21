@@ -1,7 +1,7 @@
-package Interpreter.Sample;
+package interpreter.sample;
 
 public class ParseException extends Exception {
-    public ParseException(String msg) {
+    public ParseException(final String msg) {
         super(msg);
     }
 }
