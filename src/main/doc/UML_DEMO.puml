@@ -1,0 +1,92 @@
+@startuml
+note top of SomeThing : 属性、方法访问控制
+
+class SomeThing {
+-private int privateField;
+#protected int protectField;
++public int publicFiedl;
+~int packageField;
+==
+-private void privateMethod();
+#protect vod protectedMethod();
++public void publicMethod();
+~void packageMethod();
+}
+
+note top of ParentClass : 继承(is-a关系)
+ParentClass <|-- ChildClass : 继承：空心箭\n头实线从\n子类指向父类
+
+abstract class ParentClass {
+    int field1;
+    static char field2;
+    ==
+    abstract void methodA();
+    double methodB();
+}
+
+class ChildClass {
+    ==
+    void methodA()
+    static void methodC()
+}
+
+
+note top of Printable : 实现
+Printable <|.. PrintClass : 实现：空心箭\n头虚线从实\n现指向接口
+
+interface Printable {
+    ==
+    abstract void print()
+    abstract void newPage()
+}
+
+class PrintClass {
+    ==
+    void print()
+    void newPage()
+}
+
+note top of Color : 聚合（has-关系。\n只要一个类中持有\n另外一个类的实例，\n无论一个还是多个）
+Color "1" --o "1" Fruit : 聚合：空心菱形\n实线，菱形所在端\n含有多个实例
+Fruit "many" --o "1" Basket
+
+class Color {
+}
+
+class Fruit {
+Color color
+}
+
+class Basket{
+Fruit[] fruits
+}
+
+note top of Department : 组合（contains-a\n关系。强包含关系，\n局部不能脱离整体\n存在)
+Department "many" --* "1" Company : 组合：实心菱\n形实线，菱形所在端\n含有多个实例
+
+class Department{
+}
+
+class Company {
+}
+
+note top of Climate : 关联（一个类引用\n另一个类，知道另\n一类的存在)
+Climate <-- Penguin : 关联
+
+class Climate {
+}
+
+class Penguin {
+-private Climate climate;
+}
+
+note top of Water : 依赖（一般指由局部变\n量、函数参数、返回值\n建立的对于其他对象的\n调用关系)
+Water <.. Animal: 依赖
+
+class Water {
+}
+
+abstract class Animal {
+}
+
+@enduml
