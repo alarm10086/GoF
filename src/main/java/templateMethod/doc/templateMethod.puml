@@ -1,0 +1,22 @@
+@startuml
+
+note "模版方法" as N1
+
+AbstractClass <|-- ConcreteClass
+
+abstract class AbstractClass {
+    ==
+    protected abstract abstractMethod1()
+    protected abstract abstractMethod2()
+    protected abstract abstractMethod3()
+    public templateMethod()
+}
+
+class ConcreteClass {
+    ==
+    protected abstractMethod1()
+    protected abstractMethod2()
+    protected abstractMethod3()
+}
+
+@enduml

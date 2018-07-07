@@ -1,0 +1,28 @@
+@startuml
+
+note "策略模式" as N1
+
+Context o-- Strategy
+Strategy <|-- ConcreteStrategy1
+Strategy <|-- ConcreteStrategy2
+
+class Context {
+    Strategy strategy
+    ==
+    contextMethod()
+}
+
+abstract class Strategy {
+    ==
+    public abstract strategyMethod()
+}
+
+class ConcreteStrategy1 {
+    public strategyMethod()
+}
+
+class ConcreteStrategy2 {
+    public strategyMethod()
+}
+
+@enduml

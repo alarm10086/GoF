@@ -1,0 +1,41 @@
+@startuml
+
+note "工厂模式" as N1
+
+package "框架" #DDDDDD {
+    Creator --> Product : Creates >
+
+    abstract class Creator {
+        ==
+        public create()
+        protected abstract factoryMethod()
+    }
+
+    abstract class Product {
+          ==
+          protected abstract method1()
+          protected abstract method2()
+          protected abstract method3()
+    }
+}
+
+package "具体加工" {
+    ConcreteCreator --> ConcreteProduct : Creates >
+    Creator <|-- ConcreteCreator
+    Product <|-- ConcreteProduct
+
+    class ConcreteCreator {
+        ==
+        public create()
+        protected factoryMethod()
+    }
+
+    class ConcreteProduct {
+          ==
+          public method1()
+          public method2()
+          public method3()
+    }
+}
+
+@enduml

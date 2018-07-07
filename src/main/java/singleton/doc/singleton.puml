@@ -1,0 +1,12 @@
+@startuml
+
+note "单例模式" as N1
+
+class Singleton {
+    - private Singleton singleton
+    ==
+    - private Singleton()
+    + public getInstance()
+}
+
+@enduml

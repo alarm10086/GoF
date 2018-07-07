@@ -1,0 +1,33 @@
+@startuml
+
+note "迭代器模式" as N1
+
+Aggregate --> Iterator : Creates >
+Iterator <|.. ConcreteIterator
+Aggregate <|.. ConcreteAggregate
+ConcreteIterator o-- ConcreteAggregate
+
+interface Aggregate {
+    ==
+    public abstract Iterator<T> iterator()
+}
+
+class ConcreteAggregate {
+    ==
+    public Iterator iterator()
+}
+
+interface Iterator {
+    ==
+    public abstract boolean hasNext()
+    public abstract T next()
+}
+
+class ConcreteIterator {
+  private Aggregate aggregate
+  ==
+  public boolean hasNext()
+  public T next()
+}
+
+@enduml

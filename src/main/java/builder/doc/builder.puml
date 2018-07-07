@@ -1,0 +1,33 @@
+@startuml
+
+note "builder模式" as N1
+
+Client --> Director : Uses >
+Client --> ConcreteBuilder : Uses >
+Director o-- Builder
+Builder <|-- ConcreteBuilder
+
+class Client {
+}
+
+class Director {
+    private Builder builder
+    ==
+    public construct()
+}
+
+abstract class Builder {
+    ==
+    abstract builderPart1()
+    abstract builderPart2()
+    abstract builderPart3()
+}
+
+class ConcreteBuilder {
+    ==
+    public builderPart1()
+    public builderPart2()
+    public builderPart3()
+}
+
+@enduml

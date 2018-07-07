@@ -1,0 +1,21 @@
+@startuml
+
+note "原型模式" as N1
+
+Client --> Prototype : Uses >
+Prototype <|-- ConcretePrototype
+
+class Client {
+}
+
+abstract class Prototype {
+    ==
+    public abstract createClone()
+}
+
+class ConcretePrototype {
+    ==
+    public createClone()
+}
+
+@enduml

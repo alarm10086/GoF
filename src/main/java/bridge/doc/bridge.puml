@@ -1,0 +1,35 @@
+@startuml
+
+note "桥接模式" as N1
+
+Abstraction o-- Implementor
+Abstraction <|-- RefinedAbstraction
+Implementor <|-- ConcreteImplementor
+
+class Abstraction {
+    Implementor impl
+    ==
+    method1
+    method2
+    method3
+}
+
+class RefinedAbstraction {
+    ==
+    refinedMethodA
+    refinedMethodB
+}
+
+abstract class Implementor {
+    ==
+    public abstract implMethodX()
+    public abstract implMethodY()
+}
+
+class ConcreteImplementor {
+    ==
+    public implMethodX()
+    public implMethodY()
+}
+
+@enduml

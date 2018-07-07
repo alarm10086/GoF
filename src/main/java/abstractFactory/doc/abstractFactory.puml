@@ -1,0 +1,72 @@
+@startuml
+
+note "抽象工厂" as N1
+
+package factory #DDDDDD {
+    AbstractProduct1 <-- AbstractFactory : Creates <
+    AbstractProduct2 <-- AbstractFactory : Creates <
+    AbstractProduct3 <-- AbstractFactory : Creates <
+
+    abstract class AbstractProduct1 {
+        ==
+        public executeA()
+        public executeB()
+    }
+
+    abstract class AbstractProduct2 {
+        ==
+        public doAlpha()
+        public doBeta()
+    }
+
+    abstract class AbstractProduct3 {
+        ==
+        public performOne()
+        public performTwo()
+    }
+
+    abstract class AbstractFactory {
+        ==
+        public createProduct1()
+        public createProduct2()
+        public createProduct3()
+    }
+}
+
+package concreteFactory {
+    ConcreteProduct1 <-- ConcreteFactory : Creates <
+    ConcreteProduct2 <-- ConcreteFactory : Creates <
+    ConcreteProduct3 <-- ConcreteFactory : Creates <
+
+    AbstractProduct1 <|-- ConcreteProduct1
+    AbstractProduct2 <|-- ConcreteProduct2
+    AbstractProduct3 <|-- ConcreteProduct3
+
+
+    class ConcreteProduct1 {
+        ==
+        public executeA()
+        public executeB()
+    }
+
+    class ConcreteProduct2 {
+        ==
+        public doAlpha()
+        public doBeta()
+    }
+
+    class ConcreteProduct3 {
+        ==
+        public performOne()
+        public performTwo()
+    }
+
+    class ConcreteFactory {
+        ==
+        public createProduct1()
+        public createProduct2()
+        public createProduct3()
+    }
+}
+
+@enduml
