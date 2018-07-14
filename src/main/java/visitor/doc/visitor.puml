@@ -1,0 +1,35 @@
+@startuml
+
+note "访问者模式" as N1
+
+Visitor <|-- ConcreteVisitor
+Element <|-- ConcreteElementA
+Element <|-- ConcreteElementB
+Element --o ObjectStructure
+
+abstract class Visitor {
+    ==
+    abstract visit(ConcreteElementA)
+    abstract visit(ConcreteElementB)
+}
+
+class ConcreteVisitor {
+    ==
+    visit(ConcreteElementA)
+    visit(ConcreteElementB)
+}
+
+abstract class Element {
+    ==
+    abstract accept
+}
+
+class ConcreteElementA {
+    accept
+}
+
+class ConcreteElementB {
+    accept
+}
+
+@enduml

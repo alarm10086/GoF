@@ -1,0 +1,21 @@
+@startuml
+
+note "备忘录模式" as N1
+
+Caretaker -> Originator : Requests >
+Originator -> Memento: Creates >
+Caretaker o-- Memento
+
+class Originator {
+    ==
+    createMemento
+    restoreMemento
+}
+
+class Memento {
+    ==
+    <<wide interface>> ~ getProtectedInfo
+    <<narrow interface>> + getPublicInfo
+}
+
+@enduml

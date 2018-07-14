@@ -1,0 +1,21 @@
+@startuml
+
+note "享元模式" as N1
+
+Flyweight --o FlyweightFactory: Creates <
+FlyweightFactory <-- Client: Uses <
+Flyweight <-- Client: Uses <
+
+class Flyweight {
+    ==
+    methodA
+    methodB
+}
+
+class FlyweightFactory {
+    pool
+    ==
+    getFlyweight
+}
+
+@enduml

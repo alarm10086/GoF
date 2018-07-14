@@ -1,0 +1,27 @@
+@startuml
+
+note "责任链模式" as N1
+
+Client -> Handler : Request >
+Handler <|-- ConcreteHandler1
+Handler <|-- ConcreteHandler2
+Handler --o Handler
+
+
+abstract class Handler {
+    next
+    ==
+    abstract request
+}
+
+class ConcreteHandler1 {
+    ==
+    request
+}
+
+class ConcreteHandler2 {
+    ==
+    request
+}
+
+@enduml

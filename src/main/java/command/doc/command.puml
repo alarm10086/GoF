@@ -1,0 +1,26 @@
+@startuml
+
+note "命令模式" as N1
+
+Command <|-- ConcreteCommand
+Receiver --o ConcreteCommand
+ConcreteCommand <-- Client: Creates <
+Invoker o-- Command
+
+abstract class Command {
+    ==
+    abstract execute
+}
+
+class ConcreteCommand {
+    receiver
+    ==
+    execute
+}
+
+class Receiver {
+    ==
+    action
+}
+
+@enduml

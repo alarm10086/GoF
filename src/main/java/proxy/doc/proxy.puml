@@ -1,0 +1,32 @@
+@startuml
+
+note "代理模式" as N1
+
+Client o-- Subject: Uses >
+Subject <|-- Proxy
+Subject <|-- RealSubject
+Proxy o-- RealSubject: Uses >
+
+abstract class Subject {
+    ==
+    abstract request1
+    abstract request2
+    abstract request3
+}
+
+class Proxy {
+    realSubject
+    ==
+    request1
+    request2
+    request3
+}
+
+class RealSubject {
+    ==
+    request1
+    request2
+    request3
+}
+
+@enduml

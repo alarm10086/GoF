@@ -1,0 +1,27 @@
+@startuml
+
+note "解释器模式" as N1
+
+Client --> Context: Creates >
+Client --> AbstractExpression: Uses >
+AbstractExpression <|-- TerminalExpression
+AbstractExpression <|-- NotTerminalExpression
+AbstractExpression --o NotTerminalExpression
+
+abstract class AbstractExpression {
+    ==
+    abstract interpret
+}
+
+class TerminalExpression {
+    ==
+    interpret
+}
+
+class NotTerminalExpression {
+    childExpression
+    ==
+    interpret
+}
+
+@enduml

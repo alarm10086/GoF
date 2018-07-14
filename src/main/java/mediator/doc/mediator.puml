@@ -1,0 +1,52 @@
+@startuml
+
+note "中介者模式" as N1
+
+Mediator --o Colleague
+Mediator <|-- ConcreteMediator
+Colleague <|-- ConcreteColleague1
+Colleague <|-- ConcreteColleague2
+Colleague <|-- ConcreteColleague3
+ConcreteMediator o-- ConcreteColleague1
+ConcreteMediator o-- ConcreteColleague2
+ConcreteMediator o-- ConcreteColleague3
+
+abstract class Mediator {
+    ==
+    abstract createColleagues
+    colleagueChanged
+}
+
+class ConcreteMediator {
+    concreteColleague1
+    concreteColleague2
+    concreteColleague3
+    ==
+    createColleagues
+    colleagueChanged
+}
+
+abstract class Colleague {
+    mediator
+    ==
+    setMediator
+    abstract controlColleague
+}
+
+class ConcreteColleague1 {
+    ==
+    controlColleague
+}
+
+class ConcreteColleague2 {
+    ==
+    controlColleague
+}
+
+
+class ConcreteColleague3 {
+    ==
+    controlColleague
+}
+
+@enduml

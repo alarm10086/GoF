@@ -1,0 +1,13 @@
+@startuml
+
+note "门面模式" as N1
+
+Client -> Facade : Uses >
+Facade -> ClassA
+Facade -> ClassB
+Facade -> ClassC
+Facade -> ClassD
+ClassB <--> ClassC
+
+
+@enduml

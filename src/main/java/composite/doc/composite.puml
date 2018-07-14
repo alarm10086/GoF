@@ -1,0 +1,36 @@
+@startuml
+
+note "组合模式" as N1
+
+client -> Component : Uses >
+Component <|-- Leaf
+Component <|-- Composite
+Component --o Composite
+
+abstract class Component {
+    ==
+    abstract method1
+    abstract method2
+    add
+    remove
+    getChild
+}
+
+class Leaf {
+    ==
+    method1
+    method2
+}
+
+class Composite {
+    children
+    ==
+    method1
+    method2
+    add
+    remove
+    getChild
+}
+
+
+@enduml

@@ -1,0 +1,42 @@
+@startuml
+
+note "备忘录模式" as N1
+
+Context o-- State
+State <|-- ConcreteState1
+State <|-- ConcreteState2
+
+class Context {
+    state
+    ==
+    requestX
+    requestY
+    requestZ
+}
+
+abstract class State {
+    ==
+    abstract methodA
+    abstract methodB
+    abstract methodC
+    abstract methodD
+}
+
+class ConcreteState1 {
+    ==
+    methodA
+    methodB
+    methodC
+    methodD
+}
+
+
+class ConcreteState2 {
+    ==
+    methodA
+    methodB
+    methodC
+    methodD
+}
+
+@enduml
