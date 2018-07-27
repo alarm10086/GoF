@@ -41,7 +41,7 @@ package concreteFactory {
     AbstractProduct1 <|-- ConcreteProduct1
     AbstractProduct2 <|-- ConcreteProduct2
     AbstractProduct3 <|-- ConcreteProduct3
-
+    AbstractFactory <|-- ConcreteFactory
 
     class ConcreteProduct1 {
         ==
